@@ -1,0 +1,53 @@
+//Using C
+
+find out the number of fraud voters using the student's ID 
+
+Input : 1	//number of test cases
+	4	// number of students
+	1 2 2 3	//student Ids
+Output : 1	//number of fraud votes
+
+#include <stdio.h>
+
+int main(void) {
+  int t,i,j,k,l,temp,m;
+  int st[10];
+  int id[10];
+  int count[10]={0};
+  scanf("%d",&t);
+  for(i=0;i<t;i++)
+  {
+    scanf("%d",&st[i]);
+    for(j=0;j<st[i];j++)
+    {
+      scanf("%d",&id[j]);
+    }
+    for(l=0;l<st[i];l++)
+    {
+      for(k=l+1;k<st[i];k++)
+      {
+        while(id[l]>id[k])
+        {
+          temp=id[k];
+          id[k]=id[l];
+          id[l] = temp;
+        }
+      }
+    }
+    for(m=1;m<st[i];m++)
+    {
+      if(id[m]==id[m-1])
+      {
+        count[i]++;
+      }
+    }
+  }
+  for(i=0;i<t;i++)
+  {
+  printf("\n%d",count[i]);
+  }
+
+
+
+  return 0;
+}
